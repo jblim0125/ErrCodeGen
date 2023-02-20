@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>maven-plugin</packaging>
+
+    <groupId>com.mobigen.platform</groupId>
+    <artifactId>error-codegen</artifactId>
+    <version>1.0.0</version>
+
+    <name>Error Code Generator From Message YAML File</name>
+
+    <description>Generates File from YAML and FreeMarker templates</description>
+    <url>https://github.com/mobigen-platform/error-codegen-maven</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- Dependency version -->
+        <maven-core.verion>3.9.0</maven-core.verion>
+        <maven-plugin-api.verion>3.9.0</maven-plugin-api.verion>
+        <maven-plugin-annotations.verion>3.7.1</maven-plugin-annotations.verion>
+        <freemarker.version>2.3.32</freemarker.version>
+        <snakeyaml.version>1.33</snakeyaml.version>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Error Code Generator</name>
+            <url>https://maven.pkg.github.com/jblim0125/ErrCodeGen</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <!-- plugin API and plugin-tools -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${maven-core.verion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${maven-plugin-api.verion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin-annotations.verion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-shared-utils</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <!-- For Func -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.apache.maven.plugin-testing</groupId>
+            <artifactId>maven-plugin-testing-harness</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-api</artifactId>
+            <version>1.4.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-compat</artifactId>
+            <version>3.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
